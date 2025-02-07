@@ -42,11 +42,11 @@ pipeline{
             sh 'curl http://localhost:8082'
         }
     }
-    stage(Clean Workspace){
+    stage('Clean Workspace'){
         steps {
             sh 'rm -rf*'
         }
     }
     }
-    
+
 }

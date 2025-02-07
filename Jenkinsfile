@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean install -Dmaven.test.skip=true'
+                sh 'mvn clean install -DskipTests'
             }
         }
         stage('Build and Push Docker Image') {

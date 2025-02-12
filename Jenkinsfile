@@ -5,20 +5,39 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/srikantb1/todo-application.git',
-                    branch: 'master',
+                    branch: 'master'
                 )
+            }
+        }
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean package -DskipTests'
             }
         }
         stage('Build and Push Docker Image') {
             steps {
                 script {
                     sh 'docker build -t todo-application-image:latest .'
-                    sh 'docker tag todo-application-image:latest <your-dockerhub-username>/todo-application:latest'
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                        sh 'docker push <your-dockerhub-username>/todo-application:latest'
+                    //echo "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I" | sh 'docker login -u srikantb1'
+                    sh 'docker tag todo-application-image:latest srikantb1/todo-application-image:latest'
+                    sh 'docker push srikantb1/todo-application-image:latest'
                     }
                 }
+            }
+        stage('Deploy with Docker Compose') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
+        stage('Verify Services') {
+            steps {
+                sh 'docker ps'
+                sh 'curl http://localhost:8082' // Verify the application is running
+            }
+        }
+        stage('Clean Workspace') {
+            steps {
+                sh 'rm -rf *' // Clean the workspace
             }
         }
     }

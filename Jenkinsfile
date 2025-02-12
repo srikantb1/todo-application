@@ -43,3 +43,5 @@ pipeline {
         }
     }
 }
+
+//checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/srikantb1/todo-application.git']])

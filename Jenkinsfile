@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        DOCKER_IMAGE="todo-application-image"
+        DOCKER_IMAGE="todo-application"
         DOCKER_TAG="latest"
        // DOCKER_HUB_CREDENTIALS="docker-hub-credentials"
     }

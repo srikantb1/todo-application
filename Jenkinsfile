@@ -18,9 +18,9 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t todo-application-image:latest .'
-                    echo "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I" | sh 'docker login -u srikantb1'
                     sh 'docker tag todo-application-image:latest srikantb1/todo-application-image:latest'
                     sh 'docker push srikantb1/todo-application-image:latest'
+                    echo "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I" | sh 'docker login -u srikantb1'
                     }
                 }
             }

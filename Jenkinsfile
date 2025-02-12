@@ -37,7 +37,8 @@ pipeline {
         }
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'sudo systemctl restart docker'
+                sh 'sudo su'
+                sh 'systemctl restart docker'
                 sh 'docker compose up -d'
             }
         }

@@ -9,6 +9,27 @@ pipeline {
                 )
             }
         }
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    // Hardcoded credentials (NOT RECOMMENDED)
+                    def dockerRegistry = "https://index.docker.io/v1/"
+                    def dockerUsername = "srikantb1"
+                    def dockerPassword = "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I"
+                    def dockerImageName = "todo-application-image"
+                    def dockerImageTag = "latest"
+
+                    // Log in to Docker registry
+                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${dockerRegistry}"
+
+                    // Build Docker image
+                    sh "docker build -t ${dockerImageName}:${dockerImageTag} ."
+
+                    // Push Docker image to the registry
+                    sh "docker push ${dockerImageName}:${dockerImageTag}"
+                }
+            }
+        }
         // stage('Build with Maven') {
         //     steps {
         //         sh 'mvn clean package -DskipTests'

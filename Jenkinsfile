@@ -9,11 +9,11 @@ pipeline {
                 )
             }
         }
-        stage('Build with Maven') {
-            steps {
-                bat 'mvn clean package -DskipTests'
-            }
-        }
+        // stage('Build with Maven') {
+        //     steps {
+        //         bat 'mvn clean package -DskipTests'
+        //     }
+        // }
         stage('Build and Push Docker Image') {
             steps {
                 script {

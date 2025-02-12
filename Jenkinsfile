@@ -20,13 +20,13 @@ pipeline {
                     def dockerImageTag = "latest"
 
                     // Log in to Docker registry
-                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${dockerRegistry}"
+                    bat "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${dockerRegistry}"
 
                     // Build Docker image
-                    sh "docker build -t ${dockerImageName}:${dockerImageTag} ."
+                    bat "docker build -t ${dockerImageName}:${dockerImageTag} ."
 
                     // Push Docker image to the registry
-                    sh "docker push ${dockerImageName}:${dockerImageTag}"
+                    bat "docker push ${dockerImageName}:${dockerImageTag}"
                 }
             }
         }

@@ -9,6 +9,11 @@ pipeline {
                 )
             }
         }
+        stage('Build with Maven') {
+            steps {
+                bat 'mvn clean package -DskipTests'
+            }
+        }
         stage('Build and Push Docker Image') {
             steps {
                 script {
@@ -28,6 +33,22 @@ pipeline {
                     // Push Docker image to the registry
                     bat "docker push ${dockerImageName}:${dockerImageTag}"
                 }
+            }
+        }
+        stage('Deploy with Docker Compose') {
+            steps {
+                bat 'docker compose up -d'
+            }
+        }
+        stage('Verify Services') {
+            steps {
+                bat 'docker ps'
+                bat 'curl http://localhost:8082' // Verify the application is running
+            }
+        }
+        stage('Clean Workspace') {
+            steps {
+                bat 'rm -rf *' // Clean the workspace
             }
         }
         // stage('Build with Maven') {

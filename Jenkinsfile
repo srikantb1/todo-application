@@ -28,10 +28,10 @@ pipeline {
                     bat "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${dockerRegistry}"
 
                     // Build Docker image
-                    bat "docker build -t ${dockerImageName}:${dockerImageTag} ."
+                    bat "docker build -t ${dockerUsername}/${dockerImageName}:${dockerImageTag} ."
 
                     // Push Docker image to the registry
-                    bat "docker push ${dockerImageName}:${dockerImageTag}"
+                    bat "docker push ${dockerUsername}/${dockerImageName}:${dockerImageTag}"
                 }
             }
         }

@@ -9,6 +9,10 @@ services:
     - todo-network
     depends_on:
     - mysql-db
+    volumes:
+      - ./wait-for-db.sh:/wait-for-db.sh
+    entrypoint: ["sh", "/wait-for-db.sh", "mysql-db", "java -jar app.jar"]
+
   
   mysql-db:
     image: mysql:5.7

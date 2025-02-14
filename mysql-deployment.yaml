@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0.33
+          image: mysql:8.0
           ports:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: Nuvelabs123$
+              value: Root@123
             - name: MYSQL_DATABASE
               value: tododb
           volumeMounts:

@@ -20,7 +20,7 @@ services:
       start_period: 30s
 
   todo-application:
-    image: todo-application-image:latest
+    image: srikantb1/todo-application-image:latest
     container_name: todo-application
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/tododb

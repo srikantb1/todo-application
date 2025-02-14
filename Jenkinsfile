@@ -78,7 +78,7 @@ pipeline {
         // stage('Verify Services') {
         //     steps {
         //         sh 'docker ps'
-        //         sh 'curl http://localhost:8082' // Verify the application is running
+        //         sh 'curl -v http://127.0.0.1:8082' // Verify the application is running
         //     }
         // }
         // stage('Clean Workspace') {

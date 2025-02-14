@@ -1,0 +1,4 @@
+l be ignored, please remove it to avoid potential confusion 
+[+] Running 0/1
+ ⠦ mysql-db [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀] Pulling                                                                   9.6s 
+error pulling image configuration: download failed after attempts=6: dial tcp: lookup docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com on 127.0.0.53:53: no such host

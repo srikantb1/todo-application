@@ -19,13 +19,7 @@ services:
       retries: 10
       start_period: 30s
     volumes:
-    - mysql-data: /var/lib/mysql
-    networks:
-    - todo-network
-  volumes:
-    mysql-data:
-      name: mysql-data
-  
+      - mysql-data:/var/lib/mysql
 
   todo-application:
     image: todo-application-image:latest
@@ -42,6 +36,10 @@ services:
     networks:
       - todo-network
     command: ["./wait-for-it.sh", "mysql-db:3306", "--", "java", "-jar", "app.jar"]
+
+volumes:
+  mysql-data:
+    name: mysql-data
 
 networks:
   todo-network:

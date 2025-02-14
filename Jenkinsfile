@@ -6,13 +6,13 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/srikantb1/todo-application.git',
-                    branch: 'todoapp'
+                    branch: 'master'
                 )
             }
         }
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                sh 'mvn clean package -DskipTests'
             }
         }
         stage('Build and Push Docker Image') {

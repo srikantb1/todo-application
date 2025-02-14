@@ -46,7 +46,7 @@ pipeline {
         stage('Verify Services') {
             steps {
                 bat 'docker ps'
-                bat 'curl -v http://127.0.0.1:8082' // Verify the application is running
+                bat 'curl -v http://localhost:8082' // Verify the application is running
             }
         }
         stage('Clean Workspace') {

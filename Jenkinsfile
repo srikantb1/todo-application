@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/srikantb1/todo-application.git',
-                    branch: 'master'
+                    branch: 'todoapp'
                 )
             }
         }

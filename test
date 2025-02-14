@@ -2,3 +2,6 @@ l be ignored, please remove it to avoid potential confusion
 [+] Running 0/1
  ⠦ mysql-db [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀] Pulling                                                                   9.6s 
 error pulling image configuration: download failed after attempts=6: dial tcp: lookup docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com on 127.0.0.53:53: no such host
+
+
+ERROR: failed to solve: maven:3.9.9-eclipse-temurin-17: failed to resolve source metadata for docker.io/library/maven:3.9.9-eclipse-temurin-17: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com/registry-v2/docker/registry/v2/blobs/sha256/2c/2c0d18266725b1161af875fa62a985b72b14afd460c716127018a6c9fe59b075/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=f1baa2dd9b876aeb89efebbfc9e5d5f4%2F20250214%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250214T192139Z&X-Amz-Expires=1200&X-Amz-SignedHeaders=host&X-Amz-Signature=d8333c9509de5b7b06dabe4389ce866bc05167f6bb65afd3b20bdcd16e8f164f": dial tcp: lookup docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com on 127.0.0.53:53: no such host

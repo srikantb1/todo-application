@@ -9,6 +9,13 @@ ERROR: failed to solve: maven:3.9.9-eclipse-temurin-17: failed to resolve source
 
 
 
+p
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+command terminated with exit code 1
+
+
+
 
 
 

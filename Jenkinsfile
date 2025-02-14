@@ -1,1 +1,97 @@
 
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://github.com/srikantb1/todo-application.git',
+                    branch: 'master'
+                )
+            }
+        }
+        stage('Build with Maven') {
+            steps {
+                bat 'mvn clean package -DskipTests'
+            }
+        }
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    // Hardcoded credentials (NOT RECOMMENDED)
+                    def dockerRegistry = "https://index.docker.io/v1/"
+                    def dockerUsername = "srikantb1"
+                    def dockerPassword = "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I"
+                    def dockerImageName = "todo-application-image"
+                    def dockerImageTag = "latest"
+
+                    // Log in to Docker registry
+                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${dockerRegistry}"
+
+                    // Build Docker image
+                    sh "docker build -t ${dockerUsername}/${dockerImageName}:${dockerImageTag} ."
+
+                    // // Push Docker image to the registry
+                    sh "docker push ${dockerUsername}/${dockerImageName}:${dockerImageTag}"
+                }
+            }
+        }
+        stage('Deploy with Docker Compose') {
+            steps {
+                sh 'docker compose down'
+                sh 'docker rm -f todo-application'
+                sh 'docker rm -f mysql-db'
+                sh 'docker compose up -d'
+            }
+        }
+        stage('Wait for Approval') {
+            steps {
+                input message: 'Proceed to the next stage?', ok: 'Yes'
+                echo 'Approved! Proceeding...'
+            }
+        }
+        stage('Verify Services') {
+            steps {
+                sh 'docker ps'
+                sh 'curl -v http://localhost:8082' // Verify the application is running
+            }
+        }
+        // stage('Clean Workspace') {
+        //     steps {
+        //         bat 'rm -rf *' // Clean the workspace
+        //     }
+        // }
+        // stage('Build with Maven') {
+        //     steps {
+        //         sh 'mvn clean package -DskipTests'
+        //     }
+        // }
+        // stage('Build and Push Docker Image') {
+        //     steps {
+        //         script {
+        //             sh 'docker build -t todo-application-image:latest .'
+        //             // echo "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I" | sh 'docker login --username srikantb1 --password-stdin'
+        //             // sh 'docker tag todo-application-image:latest srikantb1/todo-application-image:latest'
+        //             // sh 'docker push srikantb1/todo-application-image:latest'
+                    
+        //             }
+        //         }
+        //     }
+        // stage('Deploy with Docker Compose') {
+        //     steps {
+        //         sh 'docker compose up -d'
+        //     }
+        // }
+        // stage('Verify Services') {
+        //     steps {
+        //         sh 'docker ps'
+        //         sh 'curl -v http://127.0.0.1:8082' // Verify the application is running
+        //     }
+        // }
+        // stage('Clean Workspace') {
+        //     steps {
+        //         sh 'rm -rf *' // Clean the workspace
+        //     }
+        // }
+    }
+}

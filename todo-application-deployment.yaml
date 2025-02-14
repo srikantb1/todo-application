@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: todo-application
-          image: <docker hub username>/todo-application:latest # Replace with your Docker hub repository name and tag
+          image: srikantb1/todo-application:latest # Replace with your Docker hub repository name and tag
           ports:
             - containerPort: 8081
           env:
@@ -25,7 +25,7 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
-              value: Root@123
+              value: Nuvelabs123$
       imagePullSecrets:
         - name: my-registry-secret # Docker Hub credentials secret
 ---

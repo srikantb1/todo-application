@@ -21,7 +21,7 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: Root@123
+              value: Nuvelabs123$
             - name: MYSQL_DATABASE
               value: tododb
           volumeMounts:

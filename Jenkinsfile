@@ -55,11 +55,11 @@ pipeline {
                 bat 'curl -v http://localhost:8082' // Verify the application is running
             }
         }
-        stage('Clean Workspace') {
-            steps {
-                bat 'rm -rf *' // Clean the workspace
-            }
-        }
+        // stage('Clean Workspace') {
+        //     steps {
+        //         bat 'rm -rf *' // Clean the workspace
+        //     }
+        // }
         // stage('Build with Maven') {
         //     steps {
         //         sh 'mvn clean package -DskipTests'

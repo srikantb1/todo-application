@@ -41,6 +41,7 @@ pipeline {
                 bat 'docker rm -f todo-application'
                 bat 'docker rm -f mysql-db'
                 bat 'docker compose up -d'
+                bat 'sleep 1m'
             }
         }
         stage('Verify Services') {

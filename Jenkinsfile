@@ -5,22 +5,22 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/srikantb1/todo-application.git',
-                    branch: 'app-issue'
+                    branch: 'app-issue2'
                 )
             }
         }
-        stage('Build with Maven') {
-            steps {
-                bat 'mvn clean package -DskipTests'
-            }
-        }
+        // stage('Build with Maven') {
+        //     steps {
+        //         bat 'mvn clean package -DskipTests'
+        //     }
+        // }
         stage('Build and Push Docker Image') {
             steps {
                 script {
                     bat 'docker build -t todo-application-image:latest .'
                     echo "dckr_pat_FIsZePNH1DzR2lvWQCJmmWzEB3I" | bat 'docker login --username srikantb1 --password-stdin'
                     bat 'docker tag todo-application-image:latest srikantb1/todo-application-image:latest'
-                    bat 'docker push srikantb1/todo-application-image:latest'
+                    //bat 'docker push srikantb1/todo-application-image:latest'
                     
                     }
                 }

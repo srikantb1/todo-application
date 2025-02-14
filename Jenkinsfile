@@ -38,6 +38,7 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 bat 'docker compose down'
+                bat 'docker rm -f mysql-db'
                 bat 'docker compose up -d'
             }
         }

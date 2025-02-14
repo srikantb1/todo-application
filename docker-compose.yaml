@@ -18,6 +18,12 @@ services:
       timeout: 10s
       retries: 10
       start_period: 30s
+    volumes:
+    - mysql-data:/var/lib/mysql
+    networks:
+    - todo-network
+  volumes:
+  mysql-data:
 
   todo-application:
     image: todo-application-image:latest

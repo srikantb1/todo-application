@@ -1,3 +1,9 @@
+2025-02-14T21:57:23.412247Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file '/usr/share/mysql-8.0/errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+
+
+
+
+
 l be ignored, please remove it to avoid potential confusion 
 [+] Running 0/1
  ⠦ mysql-db [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀] Pulling                                                                   9.6s 

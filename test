@@ -34,6 +34,12 @@ stdout:
 stderr:
 error: error validating "/etc/kubernetes/addons/storageclass.yaml": error validating data: failed to download openapi: Get "https://localhost:8443/openapi/v2?timeout=32s": dial tcp [::1]:8443: connect: connection refused; if you choose to ignore these errors, turn validation off with --validate=false
 ]
-🌟  Enabled addons: 
+🌟  Enabled addons:
+
+
+
+
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+command terminated with exit code 1
 
 

@@ -41,7 +41,12 @@ pipeline {
                 bat 'docker rm -f todo-application'
                 bat 'docker rm -f mysql-db'
                 bat 'docker compose up -d'
-                bat 'sleep 1m'
+            }
+        }
+        stage('Wait for Approval') {
+            steps {
+                input message: 'Proceed to the next stage?', ok: 'Yes'
+                echo 'Approved! Proceeding...'
             }
         }
         stage('Verify Services') {

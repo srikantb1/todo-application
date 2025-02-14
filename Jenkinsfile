@@ -30,14 +30,15 @@ pipeline {
                     // Build Docker image
                     bat "docker build -t ${dockerUsername}/${dockerImageName}:${dockerImageTag} ."
 
-                    // Push Docker image to the registry
-                    bat "docker push ${dockerUsername}/${dockerImageName}:${dockerImageTag}"
+                    // // Push Docker image to the registry
+                    // bat "docker push ${dockerUsername}/${dockerImageName}:${dockerImageTag}"
                 }
             }
         }
         stage('Deploy with Docker Compose') {
             steps {
                 bat 'docker compose down'
+                bat 'docker rm -f todo-application'
                 bat 'docker rm -f mysql-db'
                 bat 'docker compose up -d'
             }
